@@ -16,6 +16,10 @@ public class ProAppointmentService {
         return appointmentRepository.findById(appointmentId).orElseThrow();
     }
 
+    public List<Appointment> findAll() {
+        return appointmentRepository.findAll();
+    }
+
     public List<Appointment> findByPractitionerId(String practitionerId) {
         return appointmentRepository.findByPractitionerId(practitionerId);
     }
