@@ -27,5 +27,4 @@ public class ProAppointmentController {
     public List<Appointment> getAppointments() {
         return proAppointmentService.findAll();
     }
-
 }
