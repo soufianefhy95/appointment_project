@@ -23,13 +23,4 @@ public class ProAppointmentService {
     public List<Appointment> findByPractitionerId(String practitionerId) {
         return appointmentRepository.findByPractitionerId(practitionerId);
     }
-
-    public Appointment insert(Appointment appointment) {
-        return appointmentRepository.save(appointment);
-    }
-
-    public void deleteAppointment(Appointment appointment) {
-        appointmentRepository.delete(appointment);
-    }
-
 }
