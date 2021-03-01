@@ -39,24 +39,24 @@ public class CommandLineStartupRunner implements CommandLineRunner {
             Practitioner practitioner = practitionerRepository.save(Practitioner.builder().firstName("practitioner" + i).lastName("maiia").build());
             //create timeSlots for practitioner
             //timeslot from 2021/02/08 at 8H to 2021/02/08 at 12H
-            TimeSlot timeSlot1 = TimeSlot.builder().practitionerId(practitioner.getId()).startDate(LocalDateTime.of(2021, 2, 8, 8, 0))
+            TimeSlot timeSlot1 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 8, 8, 0))
                     .endDate(LocalDateTime.of(2021, 2, 8, 12, 0)).build();
             //timeslot from 2021/02/08 at 14H to 2021/02/08 at 17H
-            TimeSlot timeSlot2 = TimeSlot.builder().practitionerId(practitioner.getId()).startDate(LocalDateTime.of(2021, 2, 8, 14, 0))
+            TimeSlot timeSlot2 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 8, 14, 0))
                     .endDate(LocalDateTime.of(2021, 2, 8, 17, 0)).build();
             //timeslot from 2021/02/09 at 9H to 2021/02/09 at 17H
-            TimeSlot timeSlot3 = TimeSlot.builder().practitionerId(practitioner.getId()).startDate(LocalDateTime.of(2021, 2, 9, 9, 0))
+            TimeSlot timeSlot3 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 9, 9, 0))
                     .endDate(LocalDateTime.of(2021, 2, 9, 17, 0)).build();
             List<TimeSlot> timeSlotList = new ArrayList<>(Arrays.asList(timeSlot1, timeSlot2, timeSlot3));
             if (i % 2 == 0) {
                 //timeslot from 2021/02/10 at 9H to 2021/02/10 at 16H
-                TimeSlot timeSlot4 = TimeSlot.builder().practitionerId(practitioner.getId()).startDate(LocalDateTime.of(2021, 2, 10, 9, 0))
+                TimeSlot timeSlot4 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 10, 9, 0))
                         .endDate(LocalDateTime.of(2021, 2, 10, 16, 0)).build();
                 timeSlotList.add(timeSlot4);
             }
             if (i == 3) {
                 //timeslot from 2021/02/11 at 11H to 2021/02/11 at 18H
-                TimeSlot timeSlot5 = TimeSlot.builder().practitionerId(practitioner.getId()).startDate(LocalDateTime.of(2021, 2, 11, 11, 0))
+                TimeSlot timeSlot5 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 11, 11, 0))
                         .endDate(LocalDateTime.of(2021, 2, 11, 18, 0)).build();
                 timeSlotList.add(timeSlot5);
             }
