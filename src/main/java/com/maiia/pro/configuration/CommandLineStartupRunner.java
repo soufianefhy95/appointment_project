@@ -33,10 +33,9 @@ public class CommandLineStartupRunner implements CommandLineRunner {
     public void run(String... args) {
         //initialise data
         for (int i = 1; i <= 5; i++) {
+            String speciality ="orthodontist";
             //create patient
             patientRepository.save(Patient.builder().firstName("patient_" + i).lastName("maiia").build());
-            //create practitioner
-            Practitioner practitioner = practitionerRepository.save(Practitioner.builder().firstName("practitioner" + i).lastName("maiia").build());
             //create timeSlots for practitioner
             //timeslot from 2021/02/08 at 8H to 2021/02/08 at 12H
             TimeSlot timeSlot1 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 8, 8, 0))
@@ -53,14 +52,18 @@ public class CommandLineStartupRunner implements CommandLineRunner {
                 TimeSlot timeSlot4 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 10, 9, 0))
                         .endDate(LocalDateTime.of(2021, 2, 10, 16, 0)).build();
                 timeSlotList.add(timeSlot4);
+                speciality="general practitioner";
             }
             if (i == 3) {
                 //timeslot from 2021/02/11 at 11H to 2021/02/11 at 18H
                 TimeSlot timeSlot5 = TimeSlot.builder().startDate(LocalDateTime.of(2021, 2, 11, 11, 0))
                         .endDate(LocalDateTime.of(2021, 2, 11, 18, 0)).build();
                 timeSlotList.add(timeSlot5);
+                speciality="dentist";
             }
             timeSlotRepository.saveAll(timeSlotList);
+            //create practitioner
+            Practitioner practitioner = practitionerRepository.save(Practitioner.builder().firstName("practitioner" + i).lastName("maiia").speciality(speciality).build());
         }
         log.info("------------------created patients---------------- " + patientRepository.findAll());
         log.info("------------------created practitioners---------------- " + practitionerRepository.findAll());
