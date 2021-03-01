@@ -7,15 +7,11 @@
     "dev": "next dev",
     "dev:back": "SERVER_API_ENDPOINT=http://localhost:8080 next dev",
     "lint": "eslint --ext .tsx,.ts --fix src/",
-    "start": "next start",
-    "test": "cypress open",
-    "seed-db": "prisma generate && ts-node script.ts"
+    "start": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "@prisma/cli": "^2.16.0",
-    "@prisma/client": "^2.16.0",
     "@reduxjs/toolkit": "^1.5.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.17.0",
@@ -37,14 +33,12 @@
     "@types/react-redux": "^7.1.16",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
-    "cypress": "^6.4.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
-    "prisma": "^2.16.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },

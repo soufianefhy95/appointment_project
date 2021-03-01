@@ -5,7 +5,7 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { Availability } from '@prisma/client';
+import { Availability } from 'store/types'
 import { useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useSelector } from 'react-redux';

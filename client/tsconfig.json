@@ -19,7 +19,6 @@
       "components/*": ["components/*"],
       "config": ["../config"],
       "pages/*": ["pages/*"],
-      "prisma/*": ["../prisma/*"],
       "store": ["store/index"],
       "store/*": ["store/*"],
       "styles/*": ["styles/*"],
@@ -27,5 +26,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "cypress"]
+  "exclude": ["node_modules"]
 }

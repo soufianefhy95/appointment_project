@@ -38,9 +38,9 @@ const AppointmentsPage = () => {
           In the second time, you will create an end-point top create an
           appointment.
         </p>
-<span>
-        <img src="/static/withoutAppointment.png" alt="" width="25%" height="25%"/>
-        <img src="/static/withAppointment.png" alt="" width="50%" height="50%"/>
+        <span>
+          <img src="/static/withoutAppointment.png" alt="" width="25%" height="25%"/>
+          <img src="/static/withAppointment.png" alt="" width="50%" height="50%"/>
         </span>
         <p>
           We expect you to implement bonus features: add DTO pattern and add
