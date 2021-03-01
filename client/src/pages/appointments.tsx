@@ -4,8 +4,6 @@ import Section from 'components/Section';
 import AllTasks from 'components/AllTasks';
 import { makeStyles } from '@material-ui/core';
 
-import * as osef from 'image/withoutAppointment.png';
-
 const useStyles = makeStyles({
   instructions: {
     marginBottom: '20px',
