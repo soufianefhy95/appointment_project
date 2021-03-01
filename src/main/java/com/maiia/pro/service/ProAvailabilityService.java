@@ -22,11 +22,11 @@ public class ProAvailabilityService {
     @Autowired
     private TimeSlotRepository timeSlotRepository;
 
-    public List<Availability> findByPractitionerId(String practitionerId) {
+    public List<Availability> findByPractitionerId(Integer practitionerId) {
         return availabilityRepository.findByPractitionerId(practitionerId);
     }
 
-    public List<Availability> generateAvailabilities(String practitionerId) throws NotImplementedException {
+    public List<Availability> generateAvailabilities(Integer practitionerId) throws NotImplementedException {
         throw new NotImplementedException("implement this");
     }
 }

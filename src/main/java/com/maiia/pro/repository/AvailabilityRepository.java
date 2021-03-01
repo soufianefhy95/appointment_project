@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AvailabilityRepository extends CrudRepository<Availability, String> {
-    List<Availability> findByPractitionerId(String id);
+    List<Availability> findByPractitionerId(Integer id);
 }

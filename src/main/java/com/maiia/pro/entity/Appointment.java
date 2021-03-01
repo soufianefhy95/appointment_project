@@ -19,8 +19,8 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-    private String patientId;
-    private String practitionerId;
+    private Integer patientId;
+    private Integer practitionerId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 }

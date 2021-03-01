@@ -11,6 +11,7 @@ import com.maiia.pro.repository.TimeSlotRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import  java.util.Random;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -24,8 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class ProAvailabilityServiceTest {
-    private final EntityFactory entityFactory = new EntityFactory();
-
+    private final  EntityFactory entityFactory = new EntityFactory();
+    private  final static Integer patient_id=657679;
     @Autowired
     private ProAvailabilityService proAvailabilityService;
 
@@ -83,7 +84,7 @@ class ProAvailabilityServiceTest {
         LocalDateTime startDate = LocalDateTime.of(2020, Month.FEBRUARY, 5, 11, 0, 0);
         timeSlotRepository.save(entityFactory.createTimeSlot(practitioner.getId(), startDate, startDate.plusHours(1)));
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate.plusMinutes(30),
                 startDate.plusMinutes(45)));
 
@@ -105,12 +106,12 @@ class ProAvailabilityServiceTest {
         LocalDateTime startDate = LocalDateTime.of(2020, Month.FEBRUARY, 5, 11, 0, 0);
         timeSlotRepository.save(entityFactory.createTimeSlot(practitioner.getId(), startDate, startDate.plusHours(1)));
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate,
                 startDate.plusMinutes(15)));
 
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate.plusMinutes(30),
                 startDate.plusMinutes(45)));
 
@@ -131,7 +132,7 @@ class ProAvailabilityServiceTest {
         LocalDateTime startDate = LocalDateTime.of(2020, Month.FEBRUARY, 5, 11, 0, 0);
         timeSlotRepository.save(entityFactory.createTimeSlot(practitioner.getId(), startDate, startDate.plusHours(1)));
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate.plusMinutes(15),
                 startDate.plusMinutes(35)));
 
@@ -146,7 +147,7 @@ class ProAvailabilityServiceTest {
         LocalDateTime startDate = LocalDateTime.of(2020, Month.FEBRUARY, 5, 11, 0, 0);
         timeSlotRepository.save(entityFactory.createTimeSlot(practitioner.getId(), startDate, startDate.plusHours(1)));
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate.plusMinutes(20),
                 startDate.plusMinutes(35)));
 
@@ -161,7 +162,7 @@ class ProAvailabilityServiceTest {
         LocalDateTime startDate = LocalDateTime.of(2020, Month.FEBRUARY, 5, 11, 0, 0);
         timeSlotRepository.save(entityFactory.createTimeSlot(practitioner.getId(), startDate, startDate.plusHours(1)));
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate.plusMinutes(15),
                 startDate.plusMinutes(35)));
 
@@ -183,7 +184,7 @@ class ProAvailabilityServiceTest {
         LocalDateTime startDate = LocalDateTime.of(2020, Month.FEBRUARY, 5, 11, 0, 0);
         timeSlotRepository.save(entityFactory.createTimeSlot(practitioner.getId(), startDate, startDate.plusHours(1)));
         appointmentRepository.save(entityFactory.createAppointment(practitioner.getId(),
-                UUID.randomUUID().toString(),
+                patient_id,
                 startDate.plusMinutes(20),
                 startDate.plusMinutes(35)));
 

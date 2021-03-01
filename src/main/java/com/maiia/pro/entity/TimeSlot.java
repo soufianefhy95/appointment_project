@@ -20,7 +20,7 @@ public class TimeSlot {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-    private String practitionerId;
+    private Integer practitionerId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 }
