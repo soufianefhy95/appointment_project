@@ -12,7 +12,7 @@ const TimeSlotPage = () => {
 
   return (
     <div>
-      <section datacy="intro">
+      <section>
         <header>
           <h1>Welcome to the time slot page</h1>
           <h2>An example to explain how time slots works.</h2>
@@ -37,7 +37,7 @@ const TimeSlotPage = () => {
           </section>
         </article>
       </section>
-      <section datacy="timeslots">
+      <section>
         <TimeSlotList />
       </section>
     </div>

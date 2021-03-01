@@ -11,8 +11,6 @@ import { useSelector } from 'react-redux';
 import { timeslotsSelectors } from 'store/selectors';
 import { formatDateRange } from 'utils/format';
 
-const getTimeSlotDatacy = (id: number) => `timeslot-${id}`;
-
 const useStyles = makeStyles({
   timeSlots: {
     display: 'grid',
@@ -27,13 +25,13 @@ const TimeSlotList = () => {
   const classes = useStyles();
 
   return (
-    <List className={classes.timeSlots} datacy="timeslot-list">
+    <List className={classes.timeSlots}>
       {timeslots.map((timeslot) => (
-        <Card key={timeslot.id} datacy={getTimeSlotDatacy(timeslot.id)}>
+        <Card key={timeslot.id}>
           <CardHeader
             avatar={<CalendarTodayIcon />}
             title={
-              <Typography datacy={`${getTimeSlotDatacy(timeslot.id)}-range`}>
+              <Typography>
                 {formatDateRange({
                   from: new Date(timeslot.startDate),
                   to: new Date(timeslot.endDate),
