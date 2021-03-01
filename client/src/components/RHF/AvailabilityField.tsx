@@ -5,12 +5,13 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { Availability } from 'store/types'
+import { Availability } from 'store/types';
 import { useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { availabilitiesSelectors } from 'store/selectors';
+// import { useSelector } from 'react-redux';
+// import { availabilitiesSelectors } from 'store/selectors';
 import { formatDate, formatTimeRange } from 'utils/format';
+import availabilitiesDefaultValues from 'mocks/availabilities.json';
 
 type Props = {
   name: string;
@@ -47,8 +48,10 @@ const AvailabilityField = (props: Props) => {
   const { name } = props;
   const classes = useStyles(props);
   const { control, errors } = useFormContext();
-  const availabilities = useSelector(availabilitiesSelectors.selectAll);
-  const loading = useSelector(availabilitiesSelectors.selectLoading);
+  // const availabilities = useSelector(availabilitiesSelectors.selectAll);
+  const availabilities = availabilitiesDefaultValues;
+  // const loading = useSelector(availabilitiesSelectors.selectLoading);
+  const loading = false;
 
   const availabilitiesGroupByDate = useMemo(
     () => groupAvailabilitiesByDate(availabilities),

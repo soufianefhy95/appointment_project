@@ -1,20 +1,26 @@
 import { Button, makeStyles } from '@material-ui/core';
 import { useCallback, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  useDispatch,
+  // useSelector,
+} from 'react-redux';
 import {
   appointmentsActions,
   availabilitiesActions,
   patientsActions,
   practitionersActions,
 } from 'store/actions';
-import {
-  availabilitiesSelectors,
-  patientsSelectors,
-  practitionersSelectors,
-} from 'store/selectors';
+// import {
+//   availabilitiesSelectors,
+//   patientsSelectors,
+//   practitionersSelectors,
+// } from 'store/selectors';
 import AvailabilityField from './RHF/AvailabilityField';
 import SelectField, { getOptionsDefault } from './RHF/SelectField';
+import practitionersDefaultValues from 'mocks/practitioners.json';
+import patientsDefaultValues from 'mocks/patients.json';
+import availabilitiesDefaultValues from 'mocks/availabilities.json';
 
 type AppointmentFormValues = {
   practitionerId: number;
@@ -43,9 +49,12 @@ const AppointmentForm = () => {
   const methods = useForm<AppointmentFormValues>();
   const { handleSubmit, setValue, reset } = methods;
 
-  const practitioners = useSelector(practitionersSelectors.selectAll);
-  const patients = useSelector(patientsSelectors.selectAll);
-  const availabilities = useSelector(availabilitiesSelectors.selectEntities);
+  // const practitioners = useSelector(practitionersSelectors.selectAll);
+  // const patients = useSelector(patientsSelectors.selectAll);
+  // const availabilities = useSelector(availabilitiesSelectors.selectEntities);
+  const practitioners = practitionersDefaultValues;
+  const patients = patientsDefaultValues;
+  const availabilities = availabilitiesDefaultValues;
 
   useEffect(() => {
     dispatch(practitionersActions.getList());
