@@ -1,4 +1,4 @@
-import { Button, makeStyles } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useCallback, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
@@ -28,23 +28,8 @@ type AppointmentFormValues = {
   availabilityId: number;
 };
 
-const useStyles = makeStyles({
-  button: {
-    background: '#7bc8c3',
-    color: 'white',
-    marginTop: '16px',
-  },
-  select: {
-    padding: '8px',
-    margin: '16px',
-    border: 'none',
-    borderBottom: '1px solid #333',
-    cursor: 'pointer',
-  },
-});
 
 const AppointmentForm = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const methods = useForm<AppointmentFormValues>();
   const { handleSubmit, setValue, reset } = methods;
@@ -59,7 +44,7 @@ const AppointmentForm = () => {
   useEffect(() => {
     dispatch(practitionersActions.getList());
     dispatch(patientsActions.getList());
-  }, []);
+  }, [])
 
   const onPractitionerChange = useCallback(
     (practitionerId: number) => {
@@ -99,7 +84,7 @@ const AppointmentForm = () => {
           placeholder="Select a practitioner"
           required="The practitioner field is required"
           onChange={onPractitionerChange}
-          className={classes.select}
+          className='select'
         />
         <SelectField
           label="Patient"
@@ -107,16 +92,14 @@ const AppointmentForm = () => {
           options={getOptionsDefault(patients)}
           placeholder="Select a patient"
           required="The patient field is required"
-          className={classes.select}
+          className='select'
         />
         <AvailabilityField name="availabilityId" />
-        <Button
+        <div className='cta'
           type="submit"
-          variant="contained"
-          classes={{ root: classes.button }}
         >
-          Create appointment
-        </Button>
+          Create appointment 
+        </div>
       </form>
     </FormProvider>
   );

@@ -42,7 +42,7 @@ const AllTasks = (props: Props) => {
       {isAllAchievedTasksForm &&
         isAllAchievedTasksList &&
         isAllAchievedTasksBonus && (
-          <p>
+          <p className='success'>
             You finished the test, congratulation ! Before sending your project,
             make sure that everything works well and that your code is clean.
           </p>
