@@ -2,31 +2,16 @@ import AppointmentForm from 'components/AppointmentForm';
 import AppointmentList from 'components/AppointmentList';
 import Section from 'components/Section';
 import AllTasks from 'components/AllTasks';
-import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  instructions: {
-    marginBottom: '20px',
-  },
-  goals: {
-    marginBottom: '30px',
-  },
-  structurePage: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    marginBottom: '30px',
-  },
-});
 
 const AppointmentsPage = () => {
-  const classes = useStyles();
   return (
-    <>
+    <div className='appointment page'>
       <h1>Appointments</h1>
       <Section
         name="instructions"
         title="Instructions"
-        className={classes.instructions}
+        className='instructions'
       >
         <p>
           To book an appointment, we have to set the following required
@@ -47,16 +32,16 @@ const AppointmentsPage = () => {
           unit tests if needed
         </p>
       </Section>
-      <AllTasks className={classes.goals} />
-      <div className={classes.structurePage}>
-        <Section name="appointment-form" title="Appointment Form">
+      <AllTasks className='goals' />
+      <div className='structurePage'>
+        <Section name="appointment-form" title="Appointment Form"  className='appointment__form' >
           <AppointmentForm />
         </Section>
-        <Section name="appointment-list" title="Appointment List">
+        <Section name="appointment-list" title="Appointment List" className='appointment__list'>
           <AppointmentList />
         </Section>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,35 +1,21 @@
 import {
-  Button,
   List,
   ListItem,
-  makeStyles,
   Typography,
 } from '@material-ui/core';
-import { Availability } from 'store/types'
+import { Availability } from 'store/types';
 import { useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { availabilitiesSelectors } from 'store/selectors';
+import clsx from 'clsx';
+// import { useSelector } from 'react-redux';
+// import { availabilitiesSelectors } from 'store/selectors';
 import { formatDate, formatTimeRange } from 'utils/format';
+import availabilitiesDefaultValues from 'mocks/availabilities.json';
 
 type Props = {
   name: string;
 };
 
-const useStyles = makeStyles({
-  list: {
-    display: 'flex',
-  },
-  button: {
-    background: '#7bc8c3',
-    '&:focus': {
-      background: '#7bc8c3',
-    },
-  },
-  contained: {
-    background: '#7bc8c3',
-  },
-});
 
 const groupAvailabilitiesByDate = (availabilities: Availability[]) =>
   availabilities.reduce((result, availability) => {
@@ -45,10 +31,11 @@ const groupAvailabilitiesByDate = (availabilities: Availability[]) =>
 
 const AvailabilityField = (props: Props) => {
   const { name } = props;
-  const classes = useStyles(props);
   const { control, errors } = useFormContext();
-  const availabilities = useSelector(availabilitiesSelectors.selectAll);
-  const loading = useSelector(availabilitiesSelectors.selectLoading);
+  // const availabilities = useSelector(availabilitiesSelectors.selectAll);
+  const availabilities = availabilitiesDefaultValues;
+  // const loading = useSelector(availabilitiesSelectors.selectLoading);
+  const loading = false;
 
   const availabilitiesGroupByDate = useMemo(
     () => groupAvailabilitiesByDate(availabilities),
@@ -64,28 +51,23 @@ const AvailabilityField = (props: Props) => {
       rules={{ required: 'The availability field is required' }}
       render={({ onChange, value }) => (
         <>
-          <List className={classes.list}>
+          <List className='list'>
             {Object.keys(availabilitiesGroupByDate).map(
               (dayOfAvailabilities) => {
                 const sortedAvailabilities =
                   availabilitiesGroupByDate[dayOfAvailabilities];
                 return (
-                  <div key={dayOfAvailabilities}>
+                  <div key={dayOfAvailabilities} className='day'>
                     <h2>{dayOfAvailabilities}</h2>
                     {sortedAvailabilities.map(({ id, startDate, endDate }) => {
                       const isSelected = value === id;
                       return (
-                        <ListItem key={id}>
-                          <Button
-                            variant={isSelected ? 'contained' : 'outlined'}
-                            color="primary"
+                          <div
+                            className={clsx(isSelected && 'selected', 'btn')}
                             disabled={loading}
+                            key={id}
                             onClick={() => {
                               onChange(isSelected ? '' : id);
-                            }}
-                            classes={{
-                              root: isSelected && classes.button,
-                              contained: classes.contained,
                             }}
                           >
                             <Typography
@@ -96,8 +78,7 @@ const AvailabilityField = (props: Props) => {
                                 to: endDate,
                               })}
                             </Typography>
-                          </Button>
-                        </ListItem>
+                          </div>
                       );
                     })}
                   </div>
