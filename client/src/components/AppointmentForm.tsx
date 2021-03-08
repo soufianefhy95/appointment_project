@@ -1,26 +1,19 @@
-import { Button } from '@material-ui/core';
 import { useCallback, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import {
-  useDispatch,
-  // useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   appointmentsActions,
   availabilitiesActions,
   patientsActions,
   practitionersActions,
 } from 'store/actions';
-// import {
-//   availabilitiesSelectors,
-//   patientsSelectors,
-//   practitionersSelectors,
-// } from 'store/selectors';
+import {
+  availabilitiesSelectors,
+  patientsSelectors,
+  practitionersSelectors,
+} from 'store/selectors';
 import AvailabilityField from './RHF/AvailabilityField';
 import SelectField, { getOptionsDefault } from './RHF/SelectField';
-import practitionersDefaultValues from 'mocks/practitioners.json';
-import patientsDefaultValues from 'mocks/patients.json';
-import availabilitiesDefaultValues from 'mocks/availabilities.json';
 
 type AppointmentFormValues = {
   practitionerId: number;
@@ -28,23 +21,19 @@ type AppointmentFormValues = {
   availabilityId: number;
 };
 
-
 const AppointmentForm = () => {
   const dispatch = useDispatch();
   const methods = useForm<AppointmentFormValues>();
   const { handleSubmit, setValue, reset } = methods;
 
-  // const practitioners = useSelector(practitionersSelectors.selectAll);
-  // const patients = useSelector(patientsSelectors.selectAll);
-  // const availabilities = useSelector(availabilitiesSelectors.selectEntities);
-  const practitioners = practitionersDefaultValues;
-  const patients = patientsDefaultValues;
-  const availabilities = availabilitiesDefaultValues;
+  const practitioners = useSelector(practitionersSelectors.selectAll);
+  const patients = useSelector(patientsSelectors.selectAll);
+  const availabilities = useSelector(availabilitiesSelectors.selectEntities);
 
   useEffect(() => {
     dispatch(practitionersActions.getList());
     dispatch(patientsActions.getList());
-  }, [])
+  }, []);
 
   const onPractitionerChange = useCallback(
     (practitionerId: number) => {
@@ -84,7 +73,7 @@ const AppointmentForm = () => {
           placeholder="Select a practitioner"
           required="The practitioner field is required"
           onChange={onPractitionerChange}
-          className='select'
+          className="select"
         />
         <SelectField
           label="Patient"
@@ -92,14 +81,12 @@ const AppointmentForm = () => {
           options={getOptionsDefault(patients)}
           placeholder="Select a patient"
           required="The patient field is required"
-          className='select'
+          className="select"
         />
         <AvailabilityField name="availabilityId" />
-        <div className='cta'
-          type="submit"
-        >
-          Create appointment 
-        </div>
+        <button className="cta" type="submit">
+          Create appointment
+        </button>
       </form>
     </FormProvider>
   );
