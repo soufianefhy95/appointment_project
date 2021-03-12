@@ -18,10 +18,8 @@ const getAppointmentDatacy = (id: number) => `appointment-${id}`;
 
 const AppointmentList = () => {
   const appointments = useSelector(appointmentsSelectors.selectAll);
-  console.log(appointments);
   const patients = useSelector(patientsSelectors.selectEntities);
   const practitioners = useSelector(practitionersSelectors.selectEntities);
-  console.log(practitioners);
   return (
     <List>
       {appointments.map((appointment) => (

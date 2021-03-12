@@ -1,21 +1,15 @@
-import {
-  List,
-  ListItem,
-  Typography,
-} from '@material-ui/core';
+import { List, Typography } from '@material-ui/core';
 import { Availability } from 'store/types';
 import { useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
-// import { useSelector } from 'react-redux';
-// import { availabilitiesSelectors } from 'store/selectors';
+import { useSelector } from 'react-redux';
+import { availabilitiesSelectors } from 'store/selectors';
 import { formatDate, formatTimeRange } from 'utils/format';
-import availabilitiesDefaultValues from 'mocks/availabilities.json';
 
 type Props = {
   name: string;
 };
-
 
 const groupAvailabilitiesByDate = (availabilities: Availability[]) =>
   availabilities.reduce((result, availability) => {
@@ -32,10 +26,8 @@ const groupAvailabilitiesByDate = (availabilities: Availability[]) =>
 const AvailabilityField = (props: Props) => {
   const { name } = props;
   const { control, errors } = useFormContext();
-  // const availabilities = useSelector(availabilitiesSelectors.selectAll);
-  const availabilities = availabilitiesDefaultValues;
-  // const loading = useSelector(availabilitiesSelectors.selectLoading);
-  const loading = false;
+  const availabilities = useSelector(availabilitiesSelectors.selectAll);
+  const loading = useSelector(availabilitiesSelectors.selectLoading);
 
   const availabilitiesGroupByDate = useMemo(
     () => groupAvailabilitiesByDate(availabilities),
@@ -51,34 +43,34 @@ const AvailabilityField = (props: Props) => {
       rules={{ required: 'The availability field is required' }}
       render={({ onChange, value }) => (
         <>
-          <List className='list'>
+          <List className="list">
             {Object.keys(availabilitiesGroupByDate).map(
               (dayOfAvailabilities) => {
                 const sortedAvailabilities =
                   availabilitiesGroupByDate[dayOfAvailabilities];
                 return (
-                  <div key={dayOfAvailabilities} className='day'>
+                  <div key={dayOfAvailabilities} className="day">
                     <h2>{dayOfAvailabilities}</h2>
                     {sortedAvailabilities.map(({ id, startDate, endDate }) => {
                       const isSelected = value === id;
                       return (
-                          <div
-                            className={clsx(isSelected && 'selected', 'btn')}
-                            disabled={loading}
-                            key={id}
-                            onClick={() => {
-                              onChange(isSelected ? '' : id);
-                            }}
+                        <button
+                          className={clsx(isSelected && 'selected', 'btn')}
+                          disabled={loading}
+                          key={id}
+                          onClick={() => {
+                            onChange(isSelected ? '' : id);
+                          }}
+                        >
+                          <Typography
+                            color={!isSelected ? 'textPrimary' : 'inherit'}
                           >
-                            <Typography
-                              color={!isSelected ? 'textPrimary' : 'inherit'}
-                            >
-                              {formatTimeRange({
-                                from: startDate,
-                                to: endDate,
-                              })}
-                            </Typography>
-                          </div>
+                            {formatTimeRange({
+                              from: startDate,
+                              to: endDate,
+                            })}
+                          </Typography>
+                        </button>
                       );
                     })}
                   </div>
