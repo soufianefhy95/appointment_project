@@ -1,12 +1,14 @@
 package com.maiia.pro.repository;
 
 import com.maiia.pro.entity.Appointment;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.maiia.pro.entity.Patient;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface AppointmentRepository extends MongoRepository<Appointment, String> {
+public interface AppointmentRepository extends CrudRepository<Appointment, String> {
     List<Appointment> findByPractitionerId(String practitionerId);
+    List<Appointment> findAll();
 }

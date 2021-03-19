@@ -1,6 +1,7 @@
 package com.maiia.pro.controller;
 
 import com.maiia.pro.entity.Availability;
+import com.maiia.pro.exception.NotImplementedException;
 import com.maiia.pro.service.ProAvailabilityService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ProAvailabilityController {
 
     @ApiOperation(value = "Get availabilities by practitionerId")
     @GetMapping
-    public List<Availability> getAvailabilities(@RequestParam final String practitionerId) {
+    public List<Availability> getAvailabilities(@RequestParam final Integer practitionerId) throws NotImplementedException {
         return proAvailabilityService.generateAvailabilities(practitionerId);
     }
 
