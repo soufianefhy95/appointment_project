@@ -1,5 +1,6 @@
 package com.maiia.pro.controller;
 
+import com.maiia.pro.dto.AppointmentDto;
 import com.maiia.pro.entity.Appointment;
 import com.maiia.pro.service.ProAppointmentService;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +19,7 @@ public class ProAppointmentController {
 
     @ApiOperation(value = "Get appointments by practitionerId")
     @GetMapping("/{practitionerId}")
-    public List<Appointment> getAppointmentsByPractitioner(@PathVariable final String practitionerId) {
+    public List<Appointment> getAppointmentsByPractitioner(@PathVariable final Integer practitionerId) {
         return proAppointmentService.findByPractitionerId(practitionerId);
     }
 
@@ -27,4 +28,11 @@ public class ProAppointmentController {
     public List<Appointment> getAppointments() {
         return proAppointmentService.findAll();
     }
+
+    @ApiOperation(value = "Get all appointments")
+    @PostMapping
+    public AppointmentDto createAppointment(@RequestBody final AppointmentDto appointmentDto) {
+        return proAppointmentService.generateAppointment(appointmentDto);
+    }
+
 }
